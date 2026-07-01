@@ -4,58 +4,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Hostel Management</title>
     <link rel="stylesheet" href="index.css">
 </head>
 
-
-
 <body>
-    <form>
-
-
-
-        <h2>Employee Form</h2>
-        <label type="name">Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
-
-        <label type="age">Age:</label><br>
-        <input type="number" id="age" name="age" required><br><br>
-
-        <label type="phone no">phone no:</label><br>
-        <input type="number" id="number" name="number" required><br><br>
-
-        <label type="city">city:</label><br>
-        <input type="text" id="city" name="city" required><br><br>
-
-        <label for="department">Department:</label><br>
-        <select id="department" name="department">
-            <option value="hr">HR</option>
-            <option value="it">IT</option>
-            <option value="finance">Finance</option>
-            <option value="marketing">Marketing</option>
-        </select><br><br>
-
-        <label>Gender:</label><br>
-        <input type="radio" id="male" name="gender" value="male">
-        <label for="male">Male</label><br>
-        <input type="radio" id="female" name="gender" value="female">
-        <label for="female">Female</label><br><br>
-
-        <label for="address">Address:</label><br>
-        <textarea id="address" name="address" rows="4" cols="40"></textarea><br><br>
-        <div>
-            <a href="">
-                <button>
-                    submit
-                </button>
-                <!-- <input type="submit" value="Submit"> -->
+    <div class="page">
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+            <a href="#" class="logo">
+                <img src="cremanagement/logo.png" alt="Hostel Logo">
+                <span>Hostel Management</span>
             </a>
+
+            <button class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
+                <span class="sr-only">Menu</span>
+                ☰
+            </button>
+
+            <ul class="nav-links" id="primary-navigation">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Hostel</a></li>
+                <li><a href="#">Rooms</a></li>
+                <li><a href="#">Fee Payment</a></li>
+                <li><a href="#">Mess</a></li>
+                <li><a href="#">Notices</a></li>
+                <li><a href="#">Complaints</a></li>
+                <li><a href="#">Leave Request</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Login / Register</a></li>
+            </ul>
+        </nav>
+
+        <div class="form-card">
+            <form>
+                <h2>Employee Form</h2>
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name" required><br><br>
+
+                <label for="age">Age:</label><br>
+                <input type="number" id="age" name="age" required><br><br>
+
+                <label for="number">Phone no:</label><br>
+                <input type="number" id="number" name="number" required><br><br>
+
+                <label for="city">City:</label><br>
+                <input type="text" id="city" name="city" required><br><br>
+
+                <label for="department">Department:</label><br>
+                <select id="department" name="department">
+                    <option value="hr">HR</option>
+                    <option value="it">IT</option>
+                    <option value="finance">Finance</option>
+                    <option value="marketing">Marketing</option>
+                </select><br><br>
+
+                <label>Gender:</label><br>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label><br>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label><br><br>
+
+                <label for="address">Address:</label><br>
+                <textarea id="address" name="address" rows="4" cols="40"></textarea><br><br>
+
+                <button type="submit">Submit</button>
+            </form>
         </div>
-
-
-    </form>
-
+    </div>
+    <script>
+        // Simple accessible mobile nav toggle
+        (function () {
+            const btn = document.querySelector('.nav-toggle');
+            const nav = document.getElementById('primary-navigation');
+            if (!btn || !nav) return;
+            btn.addEventListener('click', function () {
+                const expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', String(!expanded));
+                nav.classList.toggle('open');
+            });
+        })();
+    </script>
 </body>
 
 </html>
