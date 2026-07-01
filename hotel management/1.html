@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shobhit University - Hostel Management System</title>
+    <style>
+        /* ===== CSS START ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        /* College Header */
+        .college-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 5px solid #f39c12;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .college-header h1 {
+            font-size: 3em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 3px;
+        }
+
+        .college-header h2 {
+            font-size: 1.8em;
+            margin: 10px 0;
+            color: #f39c12;
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            font-style: italic;
+            margin: 10px 0;
+        }
+
+        .location,
+        .established {
+            font-size: 1em;
+            opacity: 0.9;
+            margin: 5px 0;
+        }
+
+        /* System Title */
+        .system-title {
+            text-align: center;
+            color: white;
+            padding: 30px 20px;
+        }
+
+        .system-title h1 {
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .system-title p {
+            font-size: 1.2em;
+            color: #f39c12;
+        }
+
+        /* Search Bar */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        .search-container input {
+            width: 400px;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1em;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            outline: none;
+        }
+
+        .search-container button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            background: #f39c12;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .search-container button:hover {
+            background: #e67e22;
+            transform: scale(1.05);
+        }
+
+        /* Stats Cards */
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            width: 200px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card h3 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+            font-size: 1em;
+        }
+
+        .stat-card p {
+            margin: 0;
+            font-size: 2em;
+            font-weight: bold;
+            color: #1e3c72;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 20px auto;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 900px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-section h2 {
+            text-align: center;
+            color: #1e3c72;
+            margin-bottom: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .form-grid input {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            outline: none;
+        }
+
+        .form-grid input:focus {
+            border-color: #1e3c72;
+        }
+
+        .add-btn {
+            grid-column: 1 / -1;
+            padding: 15px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .add-btn:hover {
+            background: #219a52;
+        }
+
+        /* Table Section */
+        .table-section {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 20px auto;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 1100px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow-x: auto;
+        }
+
+        .table-section h2 {
+            text-align: center;
+            color: #1e3c72;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #1e3c72;
+            color: white;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .delete-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background: #c0392b;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .college-header h1 {
+                font-size: 2em;
+            }
+
+            .college-header h2 {
+                font-size: 1.2em;
+            }
+
+            .search-container input {
+                width: 100%;
+            }
+
+            .stats-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* ===== CSS END ===== */
+    </style>
+</head>
+
+<body>
+    <!-- College Header Section -->
+    <header class="college-header">
+        <div class="college-info">
+            <h1>🏛️ SHOBHIT UNIVERSITY</h1>
+            <h2>शोभित विश्वविद्यालय</h2>
+            <p class="tagline">Empowering Minds, Building Futures</p>
+            <p class="location">📍 Meerut, Uttar Pradesh, India</p>
+            <p class="established">Established: 2006 | NAAC Accredited | UGC Approved</p>
+        </div>
+    </header>
+
+    <!-- Main Title -->
+    <div class="system-title">
+        <h1>🏨 HOSTEL MANAGEMENT SYSTEM</h1>
+        <p>Student Accommodation & Management Portal</p>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="🔍 Search student by name, room no, or ID..."
+            onkeyup="searchStudent()">
+        <button onclick="searchStudent()">Search</button>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-container">
+        <div class="stat-card">
+            <h3>👥 Total Students</h3>
+            <p id="totalStudents">0</p>
+        </div>
+        <div class="stat-card">
+            <h3>🏠 Total Rooms</h3>
+            <p>150</p>
+        </div>
+        <div class="stat-card">
+            <h3>✅ Occupied</h3>
+            <p id="occupiedRooms">0</p>
+        </div>
+        <div class="stat-card">
+            <h3>🛏️ Available</h3>
+            <p id="availableRooms">0</p>
+        </div>
+    </div>
+
+    <!-- Add Student Form -->
+    <div class="form-section">
+        <h2>📝 Add New Student</h2>
+        <div class="form-grid">
+            <input type="text" id="studentName" placeholder="Student Name">
+            <input type="text" id="studentId" placeholder="Student ID">
+            <input type="text" id="roomNo" placeholder="Room Number">
+            <input type="text" id="course" placeholder="Course">
+            <input type="text" id="contact" placeholder="Contact Number">
+            <input type="text" id="parentContact" placeholder="Parent Contact">
+            <button onclick="addStudent()" class="add-btn">➕ Add Student</button>
+        </div>
+    </div>
+
+    <!-- Student Table -->
+    <div class="table-section">
+        <h2>📋 Student Records</h2>
+        <table id="studentTable">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Student Name</th>
+                    <th>ID</th>
+                    <th>Room No</th>
+                    <th>Course</th>
+                    <th>Contact</th>
+                    <th>Parent Contact</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="studentList">
+                <!-- Data will be loaded here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Shobhit University | Hostel Management System</p>
+        <p>Developed for BCA/AD Project</p>
+    </footer>
+
+    <script>
+        // ===== JAVASCRIPT START =====
+        // Sample student data
+        let students = [
+            { name: "Rahul Sharma", id: "SU2024001", room: "101", course: "BCA", contact: "9876543210", parent: "9876543211" },
+            { name: "Priya Singh", id: "SU2024002", room: "102", course: "B.Tech", contact: "9876543220", parent: "9876543221" },
+            { name: "Amit Kumar", id: "SU2024003", room: "103", course: "MCA", contact: "9876543230", parent: "9876543231" },
+            { name: "Sneha Gupta", id: "SU2024004", room: "104", course: "BCA", contact: "9876543240", parent: "9876543241" },
+            { name: "Vikram Patel", id: "SU2024005", room: "105", course: "BBA", contact: "9876543250", parent: "9876543251" }
+        ];
+
+        // Load from localStorage if available
+        function loadStudents() {
+            let saved = localStorage.getItem('shobhitStudents');
+            if (saved) {
+                students = JSON.parse(saved);
+            }
+            displayStudents();
+            updateStats();
+        }
+
+        // Save to localStorage
+        function saveStudents() {
+            localStorage.setItem('shobhitStudents', JSON.stringify(students));
+        }
+
+        // Display students in table
+        function displayStudents(data = students) {
+            let tbody = document.getElementById('studentList');
+            tbody.innerHTML = '';
+
+            data.forEach((student, index) => {
+                let row = `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${student.name}</td>
+                        <td>${student.id}</td>
+                        <td>${student.room}</td>
+                        <td>${student.course}</td>
+                        <td>${student.contact}</td>
+                        <td>${student.parent}</td>
+                        <td><button class="delete-btn" onclick="deleteStudent(${index})">🗑️ Delete</button></td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // Add new student
+        function addStudent() {
+            let name = document.getElementById('studentName').value;
+            let id = document.getElementById('studentId').value;
+            let room = document.getElementById('roomNo').value;
+            let course = document.getElementById('course').value;
+            let contact = document.getElementById('contact').value;
+            let parent = document.getElementById('parentContact').value;
+
+            if (name && id && room && course && contact && parent) {
+                students.push({ name, id, room, course, contact, parent });
+                saveStudents();
+                displayStudents();
+                updateStats();
+
+                // Clear form
+                document.getElementById('studentName').value = '';
+                document.getElementById('studentId').value = '';
+                document.getElementById('roomNo').value = '';
+                document.getElementById('course').value = '';
+                document.getElementById('contact').value = '';
+                document.getElementById('parentContact').value = '';
+
+                alert('Student added successfully! ✅');
+            } else {
+                alert('Please fill all fields! ⚠️');
+            }
+        }
+
+        // Delete student
+        function deleteStudent(index) {
+            if (confirm('Are you sure you want to delete this student?')) {
+                students.splice(index, 1);
+                saveStudents();
+                displayStudents();
+                updateStats();
+            }
+        }
+
+        // Search student
+        function searchStudent() {
+            let query = document.getElementById('searchInput').value.toLowerCase();
+            let filtered = students.filter(s =>
+                s.name.toLowerCase().includes(query) ||
+                s.id.toLowerCase().includes(query) ||
+                s.room.includes(query)
+            );
+            displayStudents(filtered);
+        }
+
+        // Update statistics
+        function updateStats() {
+            document.getElementById('totalStudents').textContent = students.length;
+            document.getElementById('occupiedRooms').textContent = students.length;
+            document.getElementById('availableRooms').textContent = 150 - students.length;
+        }
+
+        // Initialize
+        window.onload = function () {
+            loadStudents();
+        };
+        // ===== JAVASCRIPT END =====
+    </script>
+</body>
+
+</html>
