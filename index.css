@@ -70,15 +70,40 @@ body {
     cursor: pointer;
 }
 
-.sr-only { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+.sr-only {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
 
 /* Responsive: collapse nav into toggle on small screens */
 @media (max-width: 800px) {
-    .nav-toggle { display: block; }
-    .nav-links { display: none; width: 100%; margin-top: 10px; flex-direction: column; gap: 6px; }
-    .nav-links.open { display: flex; }
-    .navbar { align-items: flex-start; }
-    .logo { font-size: 1rem; }
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        margin-top: 10px;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .navbar {
+        align-items: flex-start;
+    }
+
+    .logo {
+        font-size: 1rem;
+    }
 }
 
 .form-card {
